@@ -23,37 +23,11 @@ ALTER USER 'sys_test'@'localhost' IDENTIFIED WITH mysql_native_password BY 'pass
 
 Результатом работы должны быть скриншоты обозначенных заданий, а также простыня со всеми запросами.
 
-**Задание 2**
-
-Составьте таблицу, используя любой текстовый редактор или Excel, в которой должно быть два столбца: в первом должны быть названия таблиц восстановленной базы, во втором названия первичных ключей этих таблиц. Пример: (скриншот/текст)
-
-Название таблицы | Название первичного ключа
-customer         | customer_id
-Дополнительные задания (со звёздочкой*)
-Эти задания дополнительные, то есть не обязательные к выполнению, и никак не повлияют на получение вами зачёта по этому домашнему заданию. Вы можете их выполнить, если хотите глубже шире разобраться в материале.
-
-**Задание 3**
-
-3.1. Уберите у пользователя sys_temp права на внесение, изменение и удаление данных из базы sakila.
-
-3.2. Выполните запрос на получение списка прав для пользователя sys_temp. (скриншот)
-
-Результатом работы должны быть скриншоты обозначенных заданий, а также простыня со всеми запросами.
-
----
-
 **Решение**
 
 ![1.bmp](https://github.com/user-attachments/files/24382601/1.bmp)
 
 ![2.bmp](https://github.com/user-attachments/files/24382602/2.bmp)
-
-![3.bmp](https://github.com/user-attachments/files/24382604/3.bmp)
-
-![2_1.bmp](https://github.com/user-attachments/files/24382605/2_1.bmp)
-
-![3_1.bmp](https://github.com/user-attachments/files/24382608/3_1.bmp)
-
 
 ```sql
 CREATE USER `sys_temp`@`localhost` IDENTIFIED BY '***REDACTED FOR PRIVACY***';
@@ -148,10 +122,84 @@ mysql> SHOW TABLES;
 23 rows in set (0.01 sec)
 mysql>
 
-mysql> DESC $TABLENAME;
+mysql> SHOW FULL TABLES WHERE Table_type = 'BASE TABLE';
++------------------+------------+
+| Tables_in_sakila | Table_type |
++------------------+------------+
+| actor            | BASE TABLE |
+| address          | BASE TABLE |
+| category         | BASE TABLE |
+| city             | BASE TABLE |
+| country          | BASE TABLE |
+| customer         | BASE TABLE |
+| film             | BASE TABLE |
+| film_actor       | BASE TABLE |
+| film_category    | BASE TABLE |
+| film_text        | BASE TABLE |
+| inventory        | BASE TABLE |
+| language         | BASE TABLE |
+| payment          | BASE TABLE |
+| rental           | BASE TABLE |
+| staff            | BASE TABLE |
+| store            | BASE TABLE |
++------------------+------------+
+16 rows in set (0.00 sec)
+
+mysql>
 ```
 
+---
+
+**Задание 2**
+
+Составьте таблицу, используя любой текстовый редактор или Excel, в которой должно быть два столбца: в первом должны быть названия таблиц восстановленной базы, во втором названия первичных ключей этих таблиц. Пример: (скриншот/текст)
+
+Название таблицы | Название первичного ключа
+customer         | customer_id
+Дополнительные задания (со звёздочкой*)
+Эти задания дополнительные, то есть не обязательные к выполнению, и никак не повлияют на получение вами зачёта по этому домашнему заданию. Вы можете их выполнить, если хотите глубже шире разобраться в материале.
+
+**Решение**
+
+![2_2.bmp](https://github.com/user-attachments/files/24417690/2_2.bmp)
+
+Оригинал файла с таблицами и Первичными ключами ( также к работе на Платформе приложен файл отдельно на всякий случай ):
+
+https://github.com/AlekseyKaramyshev/aknd/blob/main/2.ods
+
 **В записях/строках по колонке/полю PRI ищем наличие записи PRI ( PRIMARY KEY - Первичный ключ ), если есть, значит имя Field из строки это первичный ключ.**
+
+```
+mysql> DESC `actor`;
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| Field       | Type              | Null | Key | Default           | Extra                                         |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+| actor_id    | smallint unsigned | NO   | PRI | NULL              | auto_increment                                |
+| first_name  | varchar(45)       | NO   |     | NULL              |                                               |
+| last_name   | varchar(45)       | NO   | MUL | NULL              |                                               |
+| last_update | timestamp         | NO   |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-------------+-------------------+------+-----+-------------------+-----------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql>
+```
+
+
+---
+
+**Задание 3**
+
+3.1. Уберите у пользователя sys_temp права на внесение, изменение и удаление данных из базы sakila.
+
+3.2. Выполните запрос на получение списка прав для пользователя sys_temp. (скриншот)
+
+Результатом работы должны быть скриншоты обозначенных заданий, а также простыня со всеми запросами.
+
+**Решение**
+
+![3.bmp](https://github.com/user-attachments/files/24382604/3.bmp)
+
+![3_1.bmp](https://github.com/user-attachments/files/24382608/3_1.bmp)
 
 ```
 mysql> REVOKE INSERT, UPDATE, DELETE ON `sakila`.* FROM `sys_temp`@`localhost`;
