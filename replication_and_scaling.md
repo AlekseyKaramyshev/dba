@@ -21,6 +21,12 @@ Slave - инстанс Базы-данных используется тольк
 
 **Решение**
 
+![Task2_1.bmp](https://github.com/user-attachments/files/24534400/2_1.bmp)
+
+![Task2_2.bmp](https://github.com/user-attachments/files/24534402/2_2.bmp)
+
+![Task2_3.bmp](https://github.com/user-attachments/files/24534407/2_3.bmp)
+
 ```bash
 dev1@lhwdgzcbsh:~/.temp$ ls -lAht
 total 16K
@@ -133,7 +139,7 @@ Query OK, 0 rows affected (0.00 sec)
 mysql>
 ```
 
-```
+```sql
 # SLAVE HOST
 dev1@lhwdgzcbsh:~/.temp$ docker exec -it mysql-slave mysql -p
 Enter password:
@@ -241,7 +247,7 @@ Records: 2  Duplicates: 0  Warnings: 0
 mysql>
 ```
 
-```
+```sql
 # SLAVE HOST
 mysql> USE `replicadb`; SELECT * FROM `user`;
 Database changed
@@ -265,6 +271,12 @@ mysql>
 Приложите скриншоты конфигурации, выполнения работы: состояния и режимы работы серверов.
 
 **Решение**
+
+![Task3_1.bmp](https://github.com/user-attachments/files/24534430/3_1.bmp)
+
+![Task3_2.bmp](https://github.com/user-attachments/files/24534437/3_2.bmp)
+
+![Task3_3.bmp](https://github.com/user-attachments/files/24534472/3_3.bmp)
 
 ```bash
 dev1@lhwdgzcbsh:~/.temp$ ls -lAht
@@ -469,7 +481,7 @@ mysql> SELECT * FROM `user`;
 mysql>
 ```
 
-```
+```sql
 # MASTER2 HOST
 dev1@lhwdgzcbsh:~/.temp$ docker exec -it mysql-master2 mysql -p
 Enter password:
